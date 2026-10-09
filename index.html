@@ -18,6 +18,9 @@
   --bg:#10181d; --surface:#18232a; --fg:#e6edf1; --muted:#9aabb5; --line:#2a3943;
   --accent:#7cb8d8; --accent-soft:#1d3240; --done:#6cc790; --done-soft:#1a3326; --warn:#e0a35c; color-scheme:dark}
 *{box-sizing:border-box}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.45}
 .wrap{max-width:640px;margin:0 auto;padding-inline:16px;padding-block:20px 64px}
 h1,h2{font-family:var(--display);text-wrap:balance;margin:0}
@@ -70,7 +73,7 @@ section{margin-top:22px}
 .ref .body{padding:0 14px 14px;color:var(--fg)}
 .ref .body p{margin:.3rem 0}
 .ref .body ul{margin:.3rem 0;padding-left:1.1rem}
-.ref .body img{border-radius:10px;margin-top:8px;border:1px solid var(--line)}
+.ref .body img{display:block;width:100%;max-width:100%;height:auto;border-radius:10px;margin-top:8px;border:1px solid var(--line)}
 
 .finish{margin-top:26px;background:var(--done);color:var(--surface);border-radius:14px;padding:18px}
 .finish h2{font-size:1.3rem}
@@ -89,7 +92,7 @@ section{margin-top:22px}
 
 <div class="wrap">
   <h1>Cobertura de Customer Service</h1>
-  <p class="sub">Checklist para el administrador que cubre recepción el fin de semana. Marque cada tarea al terminarla, en orden, desde que llega hasta las 5:00 pm.</p>
+  <p class="sub">Checklist para el administrador que cubre recepción el fin de semana. Marque cada tarea al terminarla, en orden, desde que llega hasta las 5:00 p. m.</p>
 
   <div class="date" id="fecha"></div>
 
@@ -97,7 +100,7 @@ section{margin-top:22px}
     <div class="bar-row"><strong id="pct">0%</strong><span id="count"></span></div>
     <div class="track"><div class="fill" id="fill"></div></div>
     <nav class="jump" aria-label="Ir a sección">
-      <a href="#llegada">Al llegar</a><a href="#durante">Durante el día</a><a href="#cierre">Cierre 5:00 pm</a>
+      <a href="#llegada">Al llegar</a><a href="#durante">Durante el día</a><a href="#cierre">Cierre 5:00 p. m.</a>
     </nav>
   </div>
 
@@ -174,15 +177,15 @@ const SECCIONES = [
   ]},
   {id:"durante", titulo:"Durante el día", nota:"Para atender a cualquiera que llegue a recepción.", items:[
     {id:"b1", t:"Almuerzo: llevar el beeper puesto", d:"Si alguien ingresa y presiona el botón, le suena. No se aleje más de 25 m de recepción.", img:12},
-    {id:"b2", t:"Después de almuerzo: revisar carga de los celulares", d:"Que ninguno se descargue."}
+    {id:"b2", t:"Después del almuerzo: revisar carga de los celulares", d:"Que ninguno se descargue."}
   ]},
-  {id:"cierre", titulo:"Cierre a las 5:00 pm", nota:"Es la apertura al revés, para no olvidar nada.", items:[
+  {id:"cierre", titulo:"Cierre a las 5:00 p. m.", nota:"Es la apertura al revés, para no olvidar nada.", items:[
     {id:"c1", t:"Dejar los dos celulares cargando", d:"Con el mensaje de ausencia activo en el de Customer Service."},
     {id:"c3", t:"Encender luces de afuera (frente del edificio)", d:"Deben quedar encendidas para la noche.", img:9},
-    {id:"c4", t:"Cerrar la puerta principal con seguro", d:"A partir de las 5:00 pm.", img:10},
+    {id:"c4", t:"Cerrar la puerta principal con seguro", d:"A partir de las 5:00 p. m.", img:10},
     {id:"c5", t:"Dejar el beeper cargando en su base", d:"La batería dura unas 24 horas.", img:11},
     {id:"c6", t:"Bajar la luz de recepción", d:"Botón número 3 de arriba hacia abajo (punto verde). Queda tenue: no debe quedar totalmente apagada.", img:8},
-    {id:"c7", t:"Apagar todas las luces que encendió en la mañana", d:"Pasillos y alas del edificio. Las luces de la entrada trasera se dejan como estaban."},
+    {id:"c7", t:"Apagar todas las luces que encendió en la mañana", d:"Las de los pasillos y las alas del edificio. Las luces de la entrada trasera se dejan como estaban."},
     {id:"c12", t:"Última revisión antes de salir", d:"Puerta principal con seguro y luces de afuera encendidas."}
   ]}
 ];
@@ -247,7 +250,7 @@ function pintar(){
   fin.hidden = hechos !== total;
   if(hechos === total){
     const tiempos = Object.values(state.marcas);
-    document.getElementById("finishTxt").textContent = `Customer Service quedó cubierto hoy. Primera tarea a las ${hora(Math.min(...tiempos))}, cierre a las ${hora(Math.max(...tiempos))}.`;
+    document.getElementById("finishTxt").textContent = `Customer Service quedó cubierto hoy. Primera tarea a las ${hora(Math.min(...tiempos))}, cierre a las ${hora(Math.max(...tiempos))}`;
   }
 }
 pintar();
